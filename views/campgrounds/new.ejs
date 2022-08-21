@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New</title>
+</head>
+
+<body>
+    <h1>Add New Campground</h1>
+    <form action="/campgrounds/new" method="post">
+        <fieldset>
+            <label for="title">Campground Name</label>
+            <input type="text" name="campground[title]" id="title">
+            <label for="location">Location</label>
+            <input type="text" name="campground[location]" id="location">
+            <label for="price">Price</label>
+            <input type="number" name="campground[price]" min="0" id="Price">
+
+            <br>
+
+            <div><label for="description">More About Campground</label></div>
+            <textarea name="campground[description]" id="description" cols="30" rows="4"></textarea>
+
+
+            <br>
+            <button>Submit</button>
+        </fieldset>
+    </form>
+</body>
+
+</html>
