@@ -1,43 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') %>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card" ">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= campground.title %>
-    </title>
-</head>
-
-<body>
-    <h1>
-        <%= campground.title.toUpperCase() %>
-    </h1>
-    <% if(campground.description){ %>
-        <div>
-            Description: <%= campground.description %>
-        </div>
-        <% } %>
-            <div>
-                <% if(campground.price){ %>
-                    <div>
-                        Cost : Rs <%= campground.price %>
-                    </div>
-                    <% } %>
+                <img class="img-fluid" src=" <%=campground.image %> " alt="">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <%= campground.title.toUpperCase() %>
+                    </h4>
+                    <% if(campground.description){ %>
+                        <div class="card-text">
+                            Description: <%= campground.description %>
+                        </div>
+                </div>
+                <% } %>
+                    <ul class="list-group list-group-flush">
                         <% if(campground.location){ %>
-                            <div>Location:
+                            <li class="list-group-item text-muted">Location:
                                 <%= campground.location %>
-                            </div>
+                            </li>
                             <% } %>
+                                <% if(campground.price){ %>
+                                    <li class="list-group-item">
+                                        Rs<%= campground.price%>/night
+                                    </li>
+                                    <% } %>
+                    </ul>
+                    <div class="card-body">
+                        <a class="btn btn-info" href="/campgrounds/<%=campground.id%>/edit">Edit
+                        </a>
+                        <form class="d-inline" action="/campgrounds/<%=campground.id%>?_method=DELETE" method="post">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">2 days ago</div>
             </div>
-            <a href="/campgrounds">All Campgrounds</a> <a href="/campgrounds/<%=campground.id%>/edit">Edit
-                Campground</a>
-            <form action="/campgrounds/<%=campground.id%>?_method=DELETE" method="post">
-                <button>Delete</button>
-            </form>
-
-
-</body>
-
-</html>
+        </div>
+    </div>

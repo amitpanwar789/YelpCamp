@@ -3,9 +3,10 @@ const path = require("path");
 const mongoose = require("mongoose");
 const Campgrounds = require("./models/CampModels");
 const methodOverride = require("method-override");
-
+const ejsMate = require('ejs-mate');
 const app = express();
 
+app.engine('ejs' , ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
@@ -23,7 +24,7 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 
 app.get("/", (req, res) => {
-  res.send("It's Working");
+  res.render('campgrounds/home')
 });
 
 app.get("/campgrounds", async (req, res) => {
@@ -37,7 +38,7 @@ app.get("/campgrounds/new", (req, res) => {
 
 app.post("/campgrounds/new", async (req, res) => {
   await Campgrounds.insertMany([req.body.campground]);
-  //const newCampground = await Campgrounds.insertMany([{req.params.body}])
+  res.redirect('/campgrounds')
 });
 
 app.put("/campgrounds/:id", async (req, res) => {
