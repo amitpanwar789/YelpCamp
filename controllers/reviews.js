@@ -5,7 +5,6 @@ module.exports.newReview = async (req, res) => {
   //await Review.insertMany([req.body.review]);
   //console.log(req.body.review, req.params);
   const { id } = req.params;
-  console.log(id);
   req.body.review.author = req.user._id;
   const review = new Review(req.body.review);
   const campground = await Campgrounds.findById(id);
